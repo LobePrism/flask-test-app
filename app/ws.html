@@ -1,0 +1,38 @@
+<html>
+
+  <head>
+    <title>Socket test</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", () => {
+        const socket = io.connect('http://default-saleemsakhawat1.koyeb.app/test/ws:5000');
+
+        socket.on('connect', () => {
+          console.log("Socket connected!")
+        });
+
+        socket.on('message', (message) => {
+          document.getElementById("messages").append(message);
+          console.log('Message received', message);
+        });
+
+        document.getElementById('sendbutton').addEventListener('click', () => {
+          const messageElement = document.getElementById('messageInput');
+          socket.send(messageElement.value);
+          messageElement.value = "";
+        });
+      });
+
+    </script>
+
+    <h1>Websocket Test</h1>
+    <ul id="messages"></ul>
+    <input type="text" class="form-control" id="messageInput">
+    <button id="sendbutton">
+    SEND
+    </button>
+  </body>
+</html>
