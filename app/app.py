@@ -7,7 +7,7 @@ socket = SocketIO(app)
 
 @app.route('/')
 def hello_world():
-    return 'Hello, world!'
+    return render_template('index.html')
 
 
 @socket.event("message")
