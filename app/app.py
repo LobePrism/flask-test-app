@@ -10,7 +10,7 @@ def hello_world():
     return 'Hello, world!'
 
 
-@socket.event("message", namespace="/ws")
+@socket.event("message")
 def on_message(message):
     print(message)
     emit('my response', {'data': message})
